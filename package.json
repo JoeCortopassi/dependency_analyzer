@@ -1,0 +1,22 @@
+{
+  "name": "dependency_analyzer",
+  "version": "1.0.0",
+  "description": "give useful information about package.json file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoeCortopassi/dependency_analyzer.git"
+  },
+  "author": "Joe Cortopassi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoeCortopassi/dependency_analyzer/issues"
+  },
+  "homepage": "https://github.com/JoeCortopassi/dependency_analyzer#readme",
+  "dependencies": {
+    "json5": "^1.0.1"
+  }
+}
