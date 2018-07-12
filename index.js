@@ -14,7 +14,7 @@ const retrieve = [
   .map(dep => getInfo(dep))
   .map(info => "<li><a target='__blank' href='"+info.repo+"'><h3>"+info.name+"</h3></a><p>"+info.description+"</p></li>");
 
-http.createServer(function (req, res) {
+const server = http.createServer(function (req, res) {
   var html = buildHtml(packageObj.name, retrieve);
 
   res.writeHead(200, {
@@ -29,6 +29,7 @@ childProc.exec('open -a "Google Chrome" http://localhost:8080');
 
 
 
+
 /*
  * Helpers
  */
@@ -40,10 +41,12 @@ function getInfo (depName) {
   ]).stdout;
 
   const data = JSON5.parse(output); 
+  const repo = data.repository && githubLink(data.repository.url)
+
   return {
     name: data.name,
     description: data.description,
-    repo: data.homepage
+    repo
   };
 }
 
@@ -51,7 +54,13 @@ function buildHtml(name, list) {
   return '<!DOCTYPE html><html><head>'
     + name
     + '</head><body><ul>'
-    + list
+    + list.join('')
     + '</ul></body></html>';
 };
+
+
+function githubLink (repo) {
+  const path = repo.split("github.com/")[1];
+  return "https://github.com/" + path;
+}
 
